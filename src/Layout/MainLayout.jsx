@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from '../assets/icons/logo-1.png'
 import useAuth from "../Hooks/useAuth";
 import { FiLogOut } from 'react-icons/fi';
+import Footer from "../Components/Footer/Footer";
 
 const MainLayout = () => {
 
@@ -13,13 +14,13 @@ const MainLayout = () => {
 
     const navLinks = <>
         <NavLink to="/" className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "border-b-2 border-violet-800 text-violet-800" : ""
+            isPending ? "pending" : isActive ? "border-b-2 border-orange-500 text-orange-500" : ""
         }> Home </NavLink>
         <NavLink to="/add-book" className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "border-b-2 border-violet-800 text-violet-800" : ""
+            isPending ? "pending" : isActive ? "border-b-2 border-orange-500 text-orange-500" : ""
         }> Add Book </NavLink>
         <NavLink to="/borrowed-books" className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "border-b-2 border-violet-800 text-violet-800" : ""
+            isPending ? "pending" : isActive ? "border-b-2 border-orange-500 text-orange-500" : ""
         }> Borrowed Books </NavLink>
     </>
 
@@ -36,7 +37,7 @@ const MainLayout = () => {
                     </div>
                     <div className="flex-1 px-2 mx-2 items-center py-3">
                         <img className="h-[60px]" src={logo} alt="" />
-                        <h2 className="text-3xl font-bold text-violet-800">BookishHaven</h2>
+                        <h2 className="text-3xl font-bold text-orange-500">BookishHaven</h2>
 
                     </div>
                     <div className="flex-none hidden lg:block">
@@ -51,18 +52,21 @@ const MainLayout = () => {
                                 <div className="w-10 rounded-full">
                                     <img className="rounded-full" src={user?.photoURL} />
                                 </div>
-                                <button onClick={handleLogout} className="btn btn-warning">
+                                <button onClick={handleLogout} className="btn bg-orange-500 text-white">
                                     <FiLogOut />
                                     Logout</button>
 
                             </div> :
-                            <Link className="btn btn-outline btn-secondary" to='/login'>Login</Link>
+                            <Link className="btn btn-outline btn-warning" to='/login'>Login</Link>
                         }
                     </div>
                 </div>
                 {/* Page content here */}
-                <div className="max-w-[1280px] mx-auto">
+                <div className="max-w-[1280px] mx-auto min-h-screen">
                     <Outlet></Outlet>
+                </div>
+                <div >
+                    <Footer></Footer>
                 </div>
             </div>
             <div className="drawer-side">
