@@ -1,6 +1,7 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from '../assets/icons/logo-1.png'
 import useAuth from "../Hooks/useAuth";
+import { FiLogOut } from 'react-icons/fi';
 
 const MainLayout = () => {
 
@@ -27,7 +28,7 @@ const MainLayout = () => {
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
-                <div className="w-full max-w-[1280px] mx-auto navbar bg-base-300">
+                <div className="w-full max-w-[1280px] mx-auto navbar">
                     <div className="flex-none lg:hidden">
                         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -39,21 +40,23 @@ const MainLayout = () => {
 
                     </div>
                     <div className="flex-none hidden lg:block">
-                        <div className="flex gap-6">
+                        <div className="flex gap-6 text-xl">
                             {navLinks}
                         </div>
                     </div>
-                    <div className="mx-6">
+                    <div className="text-xl ml-6">
                         {user?.email ?
                             <div className="flex gap-4 items-center">
-                                <h3>{user.displayName}</h3>
+                                <h3>{user?.displayName}</h3>
                                 <div className="w-10 rounded-full">
-                                    <img className="rounded-full" src={user.photoURL} />
+                                    <img className="rounded-full" src={user?.photoURL} />
                                 </div>
-                                <button onClick={handleLogout} className="btn btn-warning">Logout</button>
+                                <button onClick={handleLogout} className="btn btn-warning">
+                                    <FiLogOut />
+                                    Logout</button>
 
                             </div> :
-                            <Link to='/login'>Login</Link>
+                            <Link className="btn btn-outline btn-secondary" to='/login'>Login</Link>
                         }
                     </div>
                 </div>
