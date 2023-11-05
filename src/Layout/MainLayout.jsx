@@ -1,7 +1,15 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from '../assets/icons/logo-1.png'
+import useAuth from "../Hooks/useAuth";
 
 const MainLayout = () => {
+
+    const { user, logOut } = useAuth()
+
+    const handleLogout = () => {
+        logOut()
+    }
+
     const navLinks = <>
         <NavLink to="/" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "border-b-2 border-violet-800 text-violet-800" : ""
@@ -12,9 +20,6 @@ const MainLayout = () => {
         <NavLink to="/borrowed-books" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "border-b-2 border-violet-800 text-violet-800" : ""
         }> Borrowed Books </NavLink>
-        <NavLink to="/login" className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "border-b-2 border-violet-800 text-violet-800" : ""
-        }> Login </NavLink>
     </>
 
     return (
@@ -34,9 +39,22 @@ const MainLayout = () => {
 
                     </div>
                     <div className="flex-none hidden lg:block">
-                        <div className="flex gap-6 mr-6">
+                        <div className="flex gap-6">
                             {navLinks}
                         </div>
+                    </div>
+                    <div className="mx-6">
+                        {user?.email ?
+                            <div className="flex gap-4 items-center">
+                                <h3>{user.displayName}</h3>
+                                <div className="w-10 rounded-full">
+                                    <img className="rounded-full" src={user.photoURL} />
+                                </div>
+                                <button onClick={handleLogout} className="btn btn-warning">Logout</button>
+
+                            </div> :
+                            <Link to='/login'>Login</Link>
+                        }
                     </div>
                 </div>
                 {/* Page content here */}
@@ -48,8 +66,7 @@ const MainLayout = () => {
                 <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 min-h-full bg-base-200">
                     {/* Sidebar content here */}
-                    <li><a>Sidebar Item 1</a></li>
-                    <li><a>Sidebar Item 2</a></li>
+                    {navLinks}
                 </ul>
             </div>
         </div>
