@@ -1,6 +1,22 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
-import img1 from '../../assets/images/books.jpg'
+import Card from "./Card";
 const Category = () => {
+    const [categories, setCategories] = useState([])
+    console.log(categories)
+
+    useEffect(() => {
+        // fetch('http://localhost:5000/category')
+        axios.get('http://localhost:5000/category')
+            .then(res => {
+                setCategories(res.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }, [])
+
     return (
         <div className="my-24">
             <div className="flex justify-between items-center">
@@ -8,7 +24,7 @@ const Category = () => {
                     <h3 className="text-4xl font-bold text-orange-500">Top Categories</h3>
                 </div>
                 <div className="w-1/12">
-                    <Marquee speed={20}>
+                    <Marquee speed={30}>
                         <div className="w-6 h-6 mr-4 bg-orange-700"></div>
                         <div className="w-6 h-6 mr-4 bg-orange-600"></div>
                         <div className="w-6 h-6 mr-4 bg-orange-500"></div>
@@ -17,32 +33,11 @@ const Category = () => {
                     </Marquee>
                 </div>
             </div>
-            <Marquee speed={20}>
+            <Marquee speed={30} pauseOnHover={true}>
                 <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-16">
-                    <div className="shadow-lg w-[300px] border-2 rounded-lg border-slate-200 h-[350px] relative overflow-hidden">
-                        <img className="w-full h-[300px] z-30" src="https://i.ibb.co/Lp8pWTy/download.jpg" alt="" />
-                        <div className="h-[150px] -skew-y-6 hover:skew-y-0 w-full bg-white -bottom-10 hover:-bottom-5 z-20 absolute"></div>
-
-                        <h3 className="text-3xl font-bold text-center z-50 inline-block bottom-12 left-6 absolute">Novel</h3>
-                    </div>
-                    <div className="shadow-lg w-[300px] border-2 rounded-lg border-slate-200 h-[350px] relative overflow-hidden">
-                        <img className="w-full h-[300px] z-30" src="https://i.ibb.co/VHDSs2x/thrilled.png" alt="" />
-                        <div className="h-[150px] -skew-y-6 hover:skew-y-0 w-full bg-white -bottom-10 hover:-bottom-5 z-20 absolute"></div>
-
-                        <h3 className="text-3xl font-bold text-center z-50 inline-block bottom-12 left-6 absolute">Thriller</h3>
-                    </div>
-                    <div className="shadow-lg w-[300px] border-2 rounded-lg border-slate-200 h-[350px] relative overflow-hidden">
-                        <img className="w-full h-[300px] z-30" src="https://i.ibb.co/CBVdnXN/history-2.jpg" alt="" />
-                        <div className="h-[150px] -skew-y-6 hover:skew-y-0 w-full bg-white -bottom-10 hover:-bottom-5 z-20 absolute"></div>
-
-                        <h3 className="text-3xl font-bold text-center z-50 inline-block bottom-12 left-6 absolute">History</h3>
-                    </div>
-                    <div className="shadow-lg w-[300px] border-2 rounded-lg border-slate-200 h-[350px] relative overflow-hidden">
-                        <img className="w-full h-[300px] z-30" src="https://i.ibb.co/KrkpJ5p/images-3.jpg" alt="" />
-                        <div className="h-[150px] -skew-y-6 hover:skew-y-0 w-full bg-white -bottom-10 hover:-bottom-5 z-20 absolute"></div>
-
-                        <h3 className="text-3xl font-bold text-center z-50 inline-block bottom-12 left-6 absolute">Drama</h3>
-                    </div>
+                    {
+                        categories.map(category => <Card key={category._id} category={category}></Card>)
+                    }
                 </div>
             </Marquee>
         </div>

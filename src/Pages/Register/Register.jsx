@@ -2,9 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import bookImg from '../../assets/images/books.jpg'
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 
 const Register = () => {
+    const [registerError, setRegisterError] = useState('')
     const { registerUser } = useAuth()
     const navigate = useNavigate()
 
@@ -13,6 +15,13 @@ const Register = () => {
         const form = e.target
         const email = form.email.value
         const password = form.password.value
+
+        setRegisterError('')
+        const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passwordPattern.test(password)) {
+            setRegisterError('Password must contain at least one digit, one lowercase letter, one uppercase letter, and be at least 6 characters long.');
+            return;
+        }
         registerUser(email, password)
             .then(result => {
                 toast.success('User created successfully!')
@@ -20,7 +29,7 @@ const Register = () => {
 
             })
             .catch(error => {
-                console.log(error)
+                setRegisterError(error.message)
             })
     }
 
@@ -52,7 +61,9 @@ const Register = () => {
                         </div>
                         <p className="mt-4">Already have an account? <Link to='/login' className="border-b-2 border-violet-800 text-violet-800">Login</Link></p>
                     </form>
-
+                    {
+                        registerError && toast.error(registerError)
+                    }
                 </div>
             </div>
         </div>
