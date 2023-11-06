@@ -1,9 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import bookImg from '../../assets/images/pickawood-8SfXsep8EIA-unsplash.jpg'
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 const Login = () => {
     const { loginUser, googleLogin } = useAuth()
+    const location = useLocation()
     const navigate = useNavigate()
 
     const handleLogin = e => {
@@ -15,7 +16,7 @@ const Login = () => {
         loginUser(email, password)
             .then(result => {
                 toast.success('User logged in successfully!')
-                navigate('/')
+                navigate(location?.state ? location?.state : '/')
             })
             .catch(error => {
                 console.error(error)
@@ -26,7 +27,7 @@ const Login = () => {
         googleLogin()
             .then(result => {
                 toast.success('User logged in successfully!')
-                navigate('/')
+                navigate(location?.state ? location?.state : '/')
             })
             .catch(error => {
                 console.error(error)

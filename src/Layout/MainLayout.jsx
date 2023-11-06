@@ -36,9 +36,12 @@ const MainLayout = () => {
                         </label>
                     </div>
                     <div className="flex-1 px-2 mx-2 items-center py-3">
-                        <img className="h-[60px]" src={logo} alt="" />
-                        <h2 className="text-3xl font-bold text-orange-500">BookishHaven</h2>
-
+                        <Link to='/'>
+                            <div className="flex px-2 mx-2 items-center py-3">
+                                <img className="h-[60px]" src={logo} alt="" />
+                                <h2 className="text-3xl font-bold text-orange-500">BookishHaven</h2>
+                            </div>
+                        </Link>
                     </div>
                     <div className="flex-none hidden lg:block">
                         <div className="flex gap-6 text-xl">

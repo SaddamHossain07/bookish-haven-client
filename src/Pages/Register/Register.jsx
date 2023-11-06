@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bookImg from '../../assets/images/books.jpg'
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 const Register = () => {
     const { registerUser } = useAuth()
+    const navigate = useNavigate()
 
     const handleRegister = e => {
         e.preventDefault()
@@ -15,6 +16,8 @@ const Register = () => {
         registerUser(email, password)
             .then(result => {
                 toast.success('User created successfully!')
+                navigate('/login')
+
             })
             .catch(error => {
                 console.log(error)
