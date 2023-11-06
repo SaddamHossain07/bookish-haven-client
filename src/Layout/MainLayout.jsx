@@ -19,6 +19,9 @@ const MainLayout = () => {
         <NavLink to="/add-book" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "border-b-2 border-orange-500 text-orange-500" : ""
         }> Add Book </NavLink>
+        <NavLink to="/all-books" className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "border-b-2 border-orange-500 text-orange-500" : ""
+        }> All Books </NavLink>
         <NavLink to="/borrowed-books" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "border-b-2 border-orange-500 text-orange-500" : ""
         }> Borrowed Books </NavLink>
@@ -44,18 +47,18 @@ const MainLayout = () => {
                         </Link>
                     </div>
                     <div className="flex-none hidden lg:block">
-                        <div className="flex gap-6 text-xl">
+                        <div className="flex gap-4">
                             {navLinks}
                         </div>
                     </div>
-                    <div className="text-xl ml-6">
+                    <div className="ml-6">
                         {user?.email ?
                             <div className="flex gap-4 items-center">
-                                <h3>{user?.displayName}</h3>
-                                <div className="w-10 rounded-full">
+                                <h3 className="hidden md:block text-orange-800 italic font-semibold">{user?.displayName}</h3>
+                                <div className="hidden md:block w-10 rounded-full">
                                     <img className="rounded-full" src={user?.photoURL} />
                                 </div>
-                                <button onClick={handleLogout} className="btn bg-orange-500 text-white">
+                                <button onClick={handleLogout} className="btn btn-md bg-orange-500 text-white ">
                                     <FiLogOut />
                                     Logout</button>
 
