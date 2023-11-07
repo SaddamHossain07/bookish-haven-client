@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const BookDetails = () => {
     const book = useLoaderData()
@@ -59,7 +59,9 @@ const BookDetails = () => {
                         <p>Author : <span className="text-orange-900 italic">{author}</span></p>
                         <div className="flex gap-10">
                             <button className="bg-orange-500 py-4 px-10 text-white font-semibold rounded-md hover:bg-orange-600">Borrow</button>
-                            <button className="bg-orange-500 py-4 px-10 text-white font-semibold rounded-md hover:bg-orange-600">Read</button>
+                            <Link to={`/books/reading/${_id}`}>
+                                <button className="bg-orange-500 py-4 px-10 text-white font-semibold rounded-md hover:bg-orange-600">Read</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
