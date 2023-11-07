@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 
 const SingleBook = ({ book }) => {
-    const { image, name, author, category_name, rating } = book
+    const { _id, image, name, author, category_name, rating } = book
 
     const newRating = Math.round(rating)
 
@@ -31,7 +32,10 @@ const SingleBook = ({ book }) => {
                     {stars} <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{rating}</span>
                 </div>
                 <div className="card-actions justify-end">
-                    <button className="btn bg-orange-500 text-white px-6 py-4 rounded-lg">Details</button>
+                    <Link to={`/books/${_id}`}>
+                        <button className="btn bg-orange-500 text-white px-6 py-4 rounded-lg">Details</button>
+                    </Link>
+
                 </div>
             </div>
         </div>
