@@ -4,7 +4,6 @@ import Marquee from "react-fast-marquee";
 import Card from "./Card";
 const Category = () => {
     const [categories, setCategories] = useState([])
-    console.log(categories)
 
     useEffect(() => {
         // fetch('http://localhost:5000/category')
