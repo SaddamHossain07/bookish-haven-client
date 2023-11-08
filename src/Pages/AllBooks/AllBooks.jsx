@@ -16,7 +16,6 @@ const AllBooks = () => {
             })
     }, [])
 
-
     const handleFilter = () => {
         let filterBooks = books.filter(book => book.quantity > 0)
         console.log(filterBooks)
