@@ -28,7 +28,7 @@ const ReadingBook = () => {
                 <div className="w-1/2 h-[500px] bg-slate-100 shadow-md flex items-center justify-center rounded-md">
                     <img className="w-[200px] h-[300px] rounded-md" src={image} alt="" />
                 </div>
-                <div className="w-1/2 h-[500px] flex flex-col justify-between">
+                <div className="w-1/2 h-[500px] flex flex-col justify-between overflow-hidden">
                     <h2 className="text-4xl font-bold pb-4 border-b-4 border-orange-600">Some words from this book :</h2>
                     <p className="font-semibold text-xl pt-3">Written by : <span className="text-orange-900 italic">{author}</span></p>
                     <p className="text-justify">{content}</p>
