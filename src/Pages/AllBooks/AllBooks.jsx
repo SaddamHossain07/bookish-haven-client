@@ -15,6 +15,14 @@ const AllBooks = () => {
                 console.log(error)
             })
     }, [])
+
+
+    const handleFilter = () => {
+        let filterBooks = books.filter(book => book.quantity > 0)
+        console.log(filterBooks)
+        setBooks(filterBooks)
+    }
+
     return (
         <div>
             <div className="w-full rounded-lg relative">
@@ -23,8 +31,11 @@ const AllBooks = () => {
                     <h3 className="text-5xl text-orange-600 p-4 rounded-md bg-white font-bold underline italic">All Books</h3>
                 </div>
             </div>
-
-            <div className="my-24 w-11/12 mx-auto grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="flex w-11/12 mx-auto gap-6 justify-end  items-center mt-24">
+                <h3 className="text-2xl font-bold">Available Books</h3>
+                <button onClick={handleFilter} className="btn bg-orange-500 hover:bg-orange-600 rounded-none px-6 py-2">Filter</button>
+            </div>
+            <div className="my-10 w-11/12 mx-auto grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {
                     books.map(book => <Book key={book._id} book={book}></Book>)
                 }
