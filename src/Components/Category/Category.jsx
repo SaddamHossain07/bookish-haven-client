@@ -6,8 +6,8 @@ const Category = () => {
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        // fetch('http://localhost:5000/category')
-        axios.get('http://localhost:5000/category')
+        // fetch('https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/category')
+        axios.get('https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/category')
             .then(res => {
                 setCategories(res.data)
             })

@@ -6,7 +6,7 @@ const AddBook = () => {
 
     const [category, setCategory] = useState(null)
     useEffect(() => {
-        axios.get('http://localhost:5000/category')
+        axios.get('https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/category')
             .then(res => {
                 setCategory(res.data)
             })
@@ -28,7 +28,7 @@ const AddBook = () => {
         const content = form.content.value
 
         const newBook = { image, name, quantity, author, category_name, short_description, rating, content }
-        fetch('http://localhost:5000/books', {
+        fetch('https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/books', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

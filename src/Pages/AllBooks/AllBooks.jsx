@@ -7,7 +7,7 @@ const AllBooks = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/books')
+        axios.get('https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/books')
             .then(res => {
                 setBooks(res.data)
             })

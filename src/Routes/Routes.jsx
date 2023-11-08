@@ -34,22 +34,22 @@ const Routes = createBrowserRouter([
             {
                 path: 'books/category/:category_name',
                 element: <PrivateRoute><CategoryBooks></CategoryBooks></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/books/category/${params.category_name}`)
+                loader: ({ params }) => fetch(`https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/books/category/${params.category_name}`)
             },
             {
                 path: 'books/:id',
                 element: <PrivateRoute><BookDetails></BookDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/books/${params.id}`)
+                loader: ({ params }) => fetch(`https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/books/${params.id}`)
             },
             {
                 path: 'books/update/:id',
                 element: <PrivateRoute><UpdateBook></UpdateBook></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/books/${params.id}`)
+                loader: ({ params }) => fetch(`https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/books/${params.id}`)
             },
             {
                 path: 'books/reading/:id',
                 element: <PrivateRoute><ReadingBook></ReadingBook></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/books/${params.id}`)
+                loader: ({ params }) => fetch(`https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/books/${params.id}`)
             },
             {
                 path: 'borrowed-books',

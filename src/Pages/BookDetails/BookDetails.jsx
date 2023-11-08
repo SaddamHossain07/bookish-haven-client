@@ -51,7 +51,7 @@ const BookDetails = () => {
             service_id: _id,
         };
 
-        fetch('http://localhost:5000/borrow', {
+        fetch('https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/borrow', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -62,7 +62,7 @@ const BookDetails = () => {
             .then((data) => {
                 console.log(data);
                 if (data.insertedId) {
-                    fetch(`http://localhost:5000/books/${_id}`, {
+                    fetch(`https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/books/${_id}`, {
                         method: 'PATCH',
                         headers: {
                             'content-type': 'application/json',
