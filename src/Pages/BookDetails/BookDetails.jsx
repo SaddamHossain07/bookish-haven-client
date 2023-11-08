@@ -39,6 +39,7 @@ const BookDetails = () => {
         const form = e.target;
         const userName = form.name.value;
         const email = form.email.value;
+        const borrowedDate = form.borrowedDate.value;
         const returnDate = form.returnDate.value;
 
         const borrowBook = {
@@ -47,6 +48,7 @@ const BookDetails = () => {
             category_name: category_name,
             userName,
             email,
+            borrowedDate,
             returnDate,
             service_id: _id,
         };
@@ -149,6 +151,12 @@ const BookDetails = () => {
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" name="email" defaultValue={user?.email} placeholder="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Borrowed Date</span>
+                                </label>
+                                <input type="date" name="borrowedDate" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">

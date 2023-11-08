@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Items from "./Items";
-import axios from "axios";
+import BorrowedBookCard from "./BorrowedBookCard";
 
 const BorrowedBooks = () => {
     const { user } = useAuth()
@@ -17,17 +17,6 @@ const BorrowedBooks = () => {
             .then(res => setBorrows(res.data))
 
     }, [url, axiosSecure])
-
-    // useEffect(() => {
-    //     fetch(`https://bookish-haven-server.vercel.app/borrow?email=${user?.email}`)
-    //         .then(res => res.json())
-    //         .then(data => setBorrows(data))
-    // }, [user?.email])
-
-    // useEffect(() => {
-    //     axios.get(`https://bookish-haven-server.vercel.app/borrow?email=${user?.email}`)
-    //         .then(res => setBorrows(res.data))
-    // }, [user])
 
 
     const handleDelete = id => {
@@ -48,34 +37,23 @@ const BorrowedBooks = () => {
     }
 
     return (
-        <div>
-            <div className="overflow-x-auto">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>
-                                Image
-                            </th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Borrowed Date</th>
-                            <th>Return Date</th>
-                            <th>Return</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            borrows?.map(item => <Items
-                                key={item._id}
-                                handleDelete={handleDelete}
-                                item={item}
-                            ></Items>)
-                        }
+        <div className="w-[1280px]">
+            <div className="w-full rounded-lg relative">
+                <img className="rounded-lg w-full h-[400px]" src="https://i.ibb.co/qMn4Ksx/reading.png" alt="" />
+                <div className="absolute w-full h-full top-0 flex flex-col justify-center items-center">
+                    <h3 className="text-5xl text-orange-600 p-4 rounded-lg bg-white font-bold underline italic -mt-3">Borrowed Books</h3>
+                </div>
+            </div>
 
-                    </tbody>
+            <div className="my-24 w-11/12 mx-auto grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {
+                    borrows.map(book => <BorrowedBookCard
+                        key={book._id}
+                        handleDelete={handleDelete}
+                        book={book}
+                    ></BorrowedBookCard>)
+                }
 
-                </table>
             </div>
         </div>
     );
