@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Items from "./Items";
+import axios from "axios";
 
 const BorrowedBooks = () => {
     const { user } = useAuth()
@@ -16,6 +17,17 @@ const BorrowedBooks = () => {
             .then(res => setBorrows(res.data))
 
     }, [url, axiosSecure])
+
+    // useEffect(() => {
+    //     fetch(`https://bookish-haven-server.vercel.app/borrow?email=${user?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => setBorrows(data))
+    // }, [user?.email])
+
+    // useEffect(() => {
+    //     axios.get(`https://bookish-haven-server.vercel.app/borrow?email=${user?.email}`)
+    //         .then(res => setBorrows(res.data))
+    // }, [user])
 
 
     const handleDelete = id => {
