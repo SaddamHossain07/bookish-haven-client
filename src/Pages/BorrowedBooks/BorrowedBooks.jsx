@@ -21,7 +21,7 @@ const BorrowedBooks = () => {
     const handleDelete = id => {
         const proceed = confirm('Are you sure want to return this book?')
         if (proceed) {
-            fetch(`https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app/borrow/${id}`, {
+            fetch(`https://bookish-haven-server.vercel.app/borrow/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

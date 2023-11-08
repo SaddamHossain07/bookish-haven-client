@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-    baseURL: 'https://bookish-haven-server-69i69oqa4-saddam-hossains-projects.vercel.app',
+    baseURL: 'https://bookish-haven-server.vercel.app',
     withCredentials: true
 })
 const useAxiosSecure = () => {
