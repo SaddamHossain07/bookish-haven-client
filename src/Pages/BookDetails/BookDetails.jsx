@@ -1,6 +1,9 @@
 import { Link, useLoaderData } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const BookDetails = () => {
+    const { user } = useAuth()
     const book = useLoaderData()
     const { _id, image, name, author, short_description, category_name, rating, quantity, content } = book
 
@@ -30,6 +33,59 @@ const BookDetails = () => {
         );
     }
 
+
+    const handleBorrowBook = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const userName = form.name.value;
+        const email = form.email.value;
+        const returnDate = form.returnDate.value;
+
+        const borrowBook = {
+            image: image,
+            name: name,
+            category_name: category_name,
+            userName,
+            email,
+            returnDate,
+            service_id: _id,
+        };
+
+        fetch('http://localhost:5000/borrow', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(borrowBook),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (data.insertedId) {
+                    fetch(`http://localhost:5000/books/${_id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        body: JSON.stringify({ quantity: -1 }),
+                    })
+                        .then((res) => res.json())
+                        .then((updatedBook) => {
+                            console.log('Book quantity updated:', updatedBook);
+                            toast.success('You borrowed this book successfully!');
+                        })
+                        .catch((error) => {
+                            console.error('while updating book quantity:', error);
+                        });
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+
+
     return (
         <div className="w-[1280px]">
             <div className="w-full rounded-lg relative">
@@ -54,15 +110,17 @@ const BookDetails = () => {
 
                     <p className="text-justify pb-6">{newDescription} .......</p>
                     <hr />
-                    <div className="text-xl font-medium space-y-4 mt-6">
+                    <div className="text-xl font-medium space-y-2 mt-6">
                         <p>Category : <span className="text-orange-900">{category_name}</span></p>
                         <p>Author : <span className="text-orange-900 italic">{author}</span></p>
-                        <div className="flex gap-10">
-                            <button className="bg-orange-500 py-4 px-10 text-white font-semibold rounded-md hover:bg-orange-600">Borrow</button>
-                            <Link to={`/books/reading/${_id}`}>
-                                <button className="bg-orange-500 py-4 px-10 text-white font-semibold rounded-md hover:bg-orange-600">Read</button>
-                            </Link>
-                        </div>
+
+                    </div>
+                    <div className="flex gap-16 mt-6">
+                        <button id="borrowBtn" className="btn bg-orange-500 py-4 px-10 text-white font-semibold rounded-md" onClick={() => document.getElementById('my_modal_2').showModal()} disabled={quantity < 1}>Borrow</button>
+
+                        <Link to={`/books/reading/${_id}`}>
+                            <button className="btn bg-orange-500 py-4 px-10 text-white font-semibold rounded-md hover:bg-orange-600">Read</button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -70,8 +128,46 @@ const BookDetails = () => {
             <div className="w-10/12 mx-auto mt-10 mb-24 space-y-4">
                 <h3 className="text-2xl font-bold">Some words from this book</h3>
                 <p className="text-justify">{content}</p>
-
             </div>
+
+
+
+            {/* modal form  */}
+            <dialog id="my_modal_2" className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-2xl pb-4 mx-8 border-b-4 border-orange-600 text-center">Borrow The Book</h3>
+                    <form method="dialog" className="card-body" onSubmit={handleBorrowBook}>
+                        <div className="grid grid-cols-1 gap-6">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text" name="name" defaultValue={user?.displayName} placeholder="Name" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="email" name="email" defaultValue={user?.email} placeholder="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Return Date</span>
+                                </label>
+                                <input type="date" name="returnDate" className="input input-bordered" required />
+                            </div>
+
+                        </div>
+                        <div className="form-control mt-6">
+                            <button className="btn bg-orange-600 text-white font-semibold rounded-xl py-4" type="submit">Borrow</button>
+                        </div>
+                    </form>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
+
         </div>
     );
 };
