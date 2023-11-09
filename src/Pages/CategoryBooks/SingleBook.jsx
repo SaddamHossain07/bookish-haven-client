@@ -23,7 +23,7 @@ const SingleBook = ({ book }) => {
 
     return (
         <div className="card card-side bg-base-100 shadow-xl">
-            <figure><img className="w-[200px] h-[300px]" src={image} alt="Movie" /></figure>
+            <figure><img className="w-full h-[100%]" src={image} alt="Movie" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <p> <span className="italic">Written by -</span> <span className="font-semibold text-orange-800">{author}</span></p>

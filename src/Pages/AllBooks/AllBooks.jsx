@@ -28,7 +28,7 @@ const AllBooks = () => {
             <div className="w-[100%] rounded-lg relative">
                 <img className="rounded-lg w-full" src="https://i.ibb.co/9bzMd11/get-In-Touch.png" alt="" />
                 <div className="absolute w-full h-full top-0 flex justify-center items-center">
-                    <h3 className="text-5xl text-orange-600 p-4 rounded-md bg-white font-bold underline italic">All Books</h3>
+                    <h3 className="text-3xl md:text-5xl text-orange-600 p-4 rounded-md bg-white font-bold underline italic">All Books</h3>
                 </div>
             </div>
             <div className="flex w-11/12 mx-auto gap-6 justify-end  items-center mt-24">

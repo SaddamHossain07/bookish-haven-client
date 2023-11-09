@@ -117,19 +117,19 @@ const BookDetails = () => {
 
 
     return (
-        <div className="w-[1280px]">
+        <div className="max-w-[1280px]">
             <div className="w-full rounded-lg relative">
                 <img className="rounded-lg w-full" src="https://i.ibb.co/NthPxR2/single-Book.png" alt="" />
                 <div className="absolute w-full h-full top-0 flex justify-center items-center">
-                    <h3 className="text-5xl text-orange-600 p-4 rounded-md bg-white font-bold underline italic">{name}</h3>
+                    <h3 className="text-3xl md:text-5xl text-orange-600 p-4 rounded-md bg-white font-bold underline italic">{name}</h3>
                 </div>
             </div>
 
-            <div className="w-10/12 mx-auto mt-24 flex flex-row gap-10">
-                <div className="w-1/2 h-[500px] bg-slate-100 shadow-md flex items-center justify-center rounded-md">
+            <div className="w-10/12 mx-auto mt-24 flex flex-col md:flex-row gap-10">
+                <div className="w-full md:w-1/2 h-[500px] bg-slate-100 shadow-md flex items-center justify-center rounded-md">
                     <img className="w-[200px] h-[300px] rounded-md" src={image} alt="" />
                 </div>
-                <div className="w-1/2 h-[500px] flex flex-col justify-between">
+                <div className="w-full md:w-1/2 h-[500px] flex flex-col justify-between ">
                     <h2 className="text-4xl font-bold">{name}</h2>
                     <div className="flex gap-10 my-6 items-center">
                         <p className="text-xl font-semibold">Available Book : {quantity} Pice</p>
@@ -155,7 +155,7 @@ const BookDetails = () => {
                 </div>
             </div>
 
-            <div className="w-10/12 mx-auto mt-10 mb-24 space-y-4">
+            <div className="w-10/12 mx-auto mt-16 mb-24 space-y-4 block">
                 <h3 className="text-2xl font-bold">Some words from this book</h3>
                 <p className="text-justify">{content}</p>
             </div>
