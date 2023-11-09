@@ -1,55 +1,67 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 
 const AddBook = () => {
 
     const [category, setCategory] = useState(null)
+
+    const axiosSecure = useAxiosSecure()
+    const categoryURL = '/category'
+    const booksURL = '/books'
+
+
     useEffect(() => {
-        axios.get('https://bookish-haven-server.vercel.app/category')
+        axiosSecure.get(categoryURL)
             .then(res => {
                 setCategory(res.data)
             })
             .catch(error => {
                 console.log(error)
             })
-    }, [])
+    }, [axiosSecure])
 
-    const handleAddBook = e => {
-        e.preventDefault()
-        const form = e.target
-        const image = form.image.value
-        const name = form.name.value
-        const quantity = form.quantity.value
-        const author = form.author.value
-        const category_name = form.category_name.value
-        const short_description = form.short_description.value
-        const rating = form.rating.value
-        const content = form.content.value
 
-        const newBook = { image, name, quantity, author, category_name, short_description, rating, content }
-        fetch('https://bookish-haven-server.vercel.app/books', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newBook)
+    const handleAddBook = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const image = form.image.value;
+        const name = form.name.value;
+        const quantity = form.quantity.value;
+        const author = form.author.value;
+        const category_name = form.category_name.value;
+        const short_description = form.short_description.value;
+        const rating = form.rating.value;
+        const content = form.content.value;
 
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Book added successfully!',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                form.reset()
-            })
+        const newBook = {
+            image,
+            name,
+            quantity,
+            author,
+            category_name,
+            short_description,
+            rating,
+            content,
+        };
 
-    }
+
+        try {
+            const response = await axiosSecure.post(booksURL, newBook);
+            console.log(response.data);
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Book added successfully!',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            form.reset();
+
+        } catch (error) {
+            console.error('Error while adding book:', error);
+        }
+    };
 
     return (
         <div className="w-[1280px]">

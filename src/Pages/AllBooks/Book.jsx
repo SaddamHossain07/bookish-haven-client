@@ -3,13 +3,6 @@ import { Link } from "react-router-dom";
 const Book = ({ book }) => {
     const { _id, image, name, author, category_name, rating, quantity } = book
 
-    //     Image
-    // - Name
-    // - Author Name
-    // - Category
-    // - Rating [use React Rating package or any relevant package]
-    // - Update button
-
     const newRating = Math.round(rating)
     const stars = []
     for (let i = 0; i < newRating; i++) {
@@ -37,7 +30,7 @@ const Book = ({ book }) => {
                 <p className="text-orange-700 italic"> by - {author}</p>
                 <p className=""> {category_name}</p>
                 <div className="flex my-2">
-                    {stars} <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{quantity}</span>
+                    {stars} <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{rating}</span>
                 </div>
                 <Link to={`/books/update/${_id}`}>
                     <button className="btn bg-orange-500 text-white px-6 py-4 rounded-lg w-[250px]">Update</button>
