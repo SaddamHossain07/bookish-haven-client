@@ -12,7 +12,7 @@ const ReadingBook = () => {
                 <img className="rounded-lg w-full max-h-[400px]" src="https://i.ibb.co/qMn4Ksx/reading.png" alt="" />
                 <div className="absolute w-full h-full top-0 flex flex-col justify-center items-center">
                     <img className="hidden md:block w-[170px] h-[200px] rounded-lg p-3 bg-white" src={image} alt="" />
-                    <h3 className="text-xl text-orange-600 p-4 rounded-lg bg-white font-bold underline italic -mt-3">{name}</h3>
+                    <h3 className="text-3xl md:5xl text-orange-600 p-4 rounded-lg bg-white font-bold underline italic -mt-3">{name}</h3>
                 </div>
             </div>
 

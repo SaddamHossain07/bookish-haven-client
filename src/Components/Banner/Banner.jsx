@@ -6,7 +6,7 @@ const Banner = () => {
             <div id="slide1" className="carousel-item relative w-full">
                 <img src="https://i.ibb.co/Y8WDQhd/slider-2.jpg" className="w-full rounded-xl" />
                 <div className="absolute rounded-xl flex items-center h-full left-0 top-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]">
-                    <div className='text-white space-y-8 pl-12'>
+                    <div className='text-white space-y-4 md:space-y-8 pl-6 md:pl-12'>
                         <h2 className='text-3xl md:text-6xl font-bold'>Small Stories <br />
                             by Sam Wilson</h2>
                         <p>THE LIBRARY IS A PLACE FOR EVERYONE TO EXPLORE <br /> THE WORLD OF READING</p>
