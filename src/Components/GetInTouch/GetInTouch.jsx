@@ -8,11 +8,11 @@ const GetInTouch = () => {
 
             {/* <img className='w-full h-full object-cover' src={bgImg} alt="" /> */}
 
-            <div className="absolute flex items-center border-2 w-full h-full left-0 top-0 bg-gradient-to-r from-[#d28328e1] to-[rgba(21, 21, 21, 0)] px-10">
-                <div className='w-3/4'>
-                    <h3 className="text-5xl text-white font-bold">Top Books By Best Authors</h3>
+            <div className="absolute flex items-center border-2 w-full h-full left-0 top-0 bg-gradient-to-r from-[#d28328e1] to-[rgba(21, 21, 21, 0)] px-4 md:px-10">
+                <div className='w-1/2 md:w-3/4'>
+                    <h3 className="text-xl md:text-3xl lg:text-5xl text-white font-bold">Top Books By Best Authors</h3>
                 </div>
-                <div className='h-20 w-1/4 flex text-white text-xl font-bold'>
+                <div className='h-16 md:h-20 w-1/2 md:w-1/4 flex text-white text-sm md:text-lg lg:text-xl md:font-bold'>
                     <div className='bg-orange-600 items-center flex justify-center w-3/4'>
                         <h3>GET IN TOUCH</h3>
                     </div>
