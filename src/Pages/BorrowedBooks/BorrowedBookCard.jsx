@@ -1,6 +1,6 @@
 
 const BorrowedBookCard = ({ book, handleDelete }) => {
-    const { _id, image, name, borrowedDate, returnDate, category_name } = book
+    const { _id, image, name, borrowedDate, returnDate, category_name, book_id } = book
 
     return (
         <div className="card bg-base-100 shadow-xl items-center">
@@ -13,7 +13,7 @@ const BorrowedBookCard = ({ book, handleDelete }) => {
                 <p className="">Borrowed Date : {borrowedDate}</p>
                 <p className="">Return Date : {returnDate}</p>
 
-                <button onClick={() => handleDelete(_id)} className="btn bg-orange-500 text-white px-6 py-4 rounded-lg w-[250px]">Return</button>
+                <button onClick={() => handleDelete(_id, book_id)} className="btn bg-orange-500 text-white px-6 py-4 rounded-lg w-[250px]">Return</button>
 
 
             </div>

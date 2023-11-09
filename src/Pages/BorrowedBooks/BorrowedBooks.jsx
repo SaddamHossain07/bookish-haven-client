@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
-import Items from "./Items";
 import BorrowedBookCard from "./BorrowedBookCard";
 
 const BorrowedBooks = () => {
@@ -19,7 +18,8 @@ const BorrowedBooks = () => {
     }, [url, axiosSecure])
 
 
-    const handleDelete = id => {
+    const handleDelete = (id, book_id) => {
+        console.log('book id from delet btn', book_id)
         const proceed = confirm('Are you sure want to return this book?')
         if (proceed) {
             fetch(`https://bookish-haven-server.vercel.app/borrow/${id}`, {

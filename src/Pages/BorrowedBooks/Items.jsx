@@ -1,6 +1,6 @@
 
 const Items = ({ item, handleDelete }) => {
-    const { _id, image, name, category_name, returnDate } = item
+    const { _id, image, name, category_name, returnDate, book_id } = item
     return (
         <tr>
 
@@ -24,6 +24,9 @@ const Items = ({ item, handleDelete }) => {
             </td>
             <td>
                 {returnDate}
+            </td>
+            <td>
+                {book_id}
             </td>
             <td>
                 <button onClick={() => handleDelete(_id)} className="btn btn-warning">

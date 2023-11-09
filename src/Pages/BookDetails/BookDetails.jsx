@@ -1,6 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 
 const BookDetails = () => {
     const { user } = useAuth()
@@ -33,6 +35,29 @@ const BookDetails = () => {
         );
     }
 
+    const [borrows, setBorrows] = useState([])
+    const url = `/borrow?email=${user.email}`
+    const axiosSecure = useAxiosSecure()
+    useEffect(() => {
+        axiosSecure.get(url)
+            .then(res => setBorrows(res.data))
+
+    }, [url, axiosSecure])
+
+
+
+    const [isBorrowed, setIsBorrowed] = useState(false)
+    useEffect(() => {
+        const checkBorrowedBook = borrows.filter(item => item.book_id === book._id)
+
+        if (checkBorrowedBook.length > 0) {
+            setIsBorrowed(true)
+        }
+    }, [borrows, book])
+
+
+
+
 
     const handleBorrowBook = (e) => {
         e.preventDefault();
@@ -50,42 +75,45 @@ const BookDetails = () => {
             email,
             borrowedDate,
             returnDate,
-            service_id: _id,
+            book_id: _id,
         };
 
-        fetch('https://bookish-haven-server.vercel.app/borrow', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(borrowBook),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                if (data.insertedId) {
-                    fetch(`https://bookish-haven-server.vercel.app/books/${_id}`, {
-                        method: 'PATCH',
-                        headers: {
-                            'content-type': 'application/json',
-                        },
-                        body: JSON.stringify({ quantity: -1 }),
-                    })
-                        .then((res) => res.json())
-                        .then((updatedBook) => {
-                            console.log('Book quantity updated:', updatedBook);
-                            toast.success('You borrowed this book successfully!');
-                        })
-                        .catch((error) => {
-                            console.error('while updating book quantity:', error);
-                        });
-                }
+        if (isBorrowed) {
+            toast.error('You already borrowed this book! Please return on the committed date.')
+        } else if (quantity > 0) {
+            fetch('https://bookish-haven-server.vercel.app/borrow', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(borrowBook),
             })
-            .catch((error) => {
-                console.error(error);
-            });
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    if (data.insertedId) {
+                        fetch(`https://bookish-haven-server.vercel.app/books/${_id}`, {
+                            method: 'PATCH',
+                            headers: {
+                                'content-type': 'application/json',
+                            },
+                            body: JSON.stringify({ quantity: -1 }),
+                        })
+                            .then((res) => res.json())
+                            .then((updatedBook) => {
+                                console.log('Book quantity updated:', updatedBook);
+                                toast.success('You borrowed this book successfully!');
+                            })
+                            .catch((error) => {
+                                console.error('while updating book quantity:', error);
+                            });
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
     };
-
 
 
     return (
