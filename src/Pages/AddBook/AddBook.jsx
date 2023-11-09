@@ -64,11 +64,11 @@ const AddBook = () => {
     };
 
     return (
-        <div className="w-[1280px]">
-            <div className="w-full rounded-lg relative">
+        <div className="max-w-[1280px]">
+            <div className="w-[100%] rounded-lg relative">
                 <img className="rounded-lg w-full" src="https://i.ibb.co/PYwRQkb/banner-9.png" alt="" />
                 <div className="absolute w-full h-full top-0 flex justify-center items-center">
-                    <h3 className="text-5xl text-orange-600 p-4 rounded-md bg-white font-bold underline italic">Add Books</h3>
+                    <h3 className="text-3xl md:text-5xl text-orange-600 p-4 rounded-md bg-white font-bold underline italic">Add Books</h3>
                 </div>
             </div>
             <form onSubmit={handleAddBook} className="w-10/12 mx-auto mt-10">

@@ -32,12 +32,17 @@ const Category = () => {
                 </div>
             </div>
             <Marquee speed={30} pauseOnHover={true}>
-                <div className="flex gap-5 mt-16">
+                <div className="hidden md:flex gap-5 mt-16">
                     {
                         categories.map(category => <Card key={category._id} category={category}></Card>)
                     }
                 </div>
             </Marquee>
+            <div className="grid grid-cols-1 gap-6 md:hidden mt-16">
+                {
+                    categories.map(category => <Card key={category._id} category={category}></Card>)
+                }
+            </div>
         </div>
     );
 };

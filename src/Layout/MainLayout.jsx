@@ -58,7 +58,7 @@ const MainLayout = () => {
                                 <div className="hidden md:block w-10 rounded-full">
                                     <img className="rounded-full" src={user?.photoURL} />
                                 </div>
-                                <button onClick={handleLogout} className="btn btn-md bg-orange-500 text-white ">
+                                <button onClick={handleLogout} className="btn btn-md hidden md:flex bg-orange-500 text-white ">
                                     <FiLogOut />
                                     Logout</button>
 
@@ -80,7 +80,27 @@ const MainLayout = () => {
                 <ul className="menu p-4 w-80 min-h-full bg-base-200">
                     {/* Sidebar content here */}
                     {navLinks}
-                </ul>
+                    <div className="mt-6">
+                        {user?.email ?
+                            <div className="flex gap-4 items-center">
+                                <h3 className="hidden md:block text-orange-800 italic font-semibold">{user?.displayName}</h3>
+                                <div className="hidden md:block w-10 rounded-full">
+                                    <img className="rounded-full" src={user?.photoURL} />
+                                </div>
+                                <button onClick={handleLogout} className="btn btn-md bg-orange-500 text-white ">
+                                    <FiLogOut />
+                                    Logout</button>
+
+                            </div> :
+                            <Link to='/login'>
+                                <button className="btn btn-outline btn-warning">
+                                    Login
+                                </button>
+                            </Link>
+                        }
+                    </div>
+                </ul> <br />
+
             </div>
         </div>
     );

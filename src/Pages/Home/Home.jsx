@@ -5,7 +5,7 @@ import Services from "../../Components/Services/Services";
 
 const Home = () => {
     return (
-        <div>
+        <div className="max-w-[1280px]">
             <Banner></Banner>
             <Category></Category>
             <GetInTouch></GetInTouch>
