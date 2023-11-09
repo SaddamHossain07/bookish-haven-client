@@ -63,7 +63,7 @@ const MainLayout = () => {
                                     Logout</button>
 
                             </div> :
-                            <Link className="btn btn-outline btn-warning" to='/login'>Login</Link>
+                            <Link className="btn btn-outline hidden md:flex btn-warning" to='/login'>Login</Link>
                         }
                     </div>
                 </div>

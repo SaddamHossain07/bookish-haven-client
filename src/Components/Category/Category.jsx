@@ -16,12 +16,10 @@ const Category = () => {
     }, [])
 
     return (
-        <div className="my-24">
-            <div className="flex justify-between items-center">
-                <div className="w-11/12">
-                    <h3 className="text-4xl font-bold text-orange-500">Top Categories</h3>
-                </div>
-                <div className="w-1/12">
+        <div className="my-24 max-w-[1280px]">
+            <div className="flex w-[100%] justify-between items-center">
+                <h3 className="text-4xl font-bold text-orange-500">Top Categories</h3>
+                <div className="w-[100px]">
                     <Marquee speed={30}>
                         <div className="w-6 h-6 mr-4 bg-orange-700"></div>
                         <div className="w-6 h-6 mr-4 bg-orange-600"></div>
