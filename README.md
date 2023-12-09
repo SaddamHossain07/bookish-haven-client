@@ -12,6 +12,7 @@ BookishHaven is a Library management system based on SPA (single page applicatio
 </p>
 <br/>
 <hr/>
+
 ## The best features of this project are are describe bellow --
 
 1. Unique Design : 
