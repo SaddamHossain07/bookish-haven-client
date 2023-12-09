@@ -1,8 +1,8 @@
 # Bookish Haven
 
-BookishHaven is a Library management system based on SPA (single page application) developed by the latest technologies. We use React and Tailwind CSS for front end. Express js for backend we use the noSQL database MongoDB. the client site is hosted on firebase and the backend site is hosted on vercel.
+BookishHaven is a Library management system based on SPA (single page application) developed with the latest technologies. We use ReactJS and Tailwind CSS for front-end, Expressjs and noSQL database MongoDB in back-end. The client site is hosted on firebase and the server site is hosted on vercel.
 
-The best features of this project are are describe bellow --
+## The best features of this project are are describe bellow --
 
 1. Unique Design : 
 The UI design of this website is very unique, eye catchy and professional looks. User experience will be satisfactory to navigate its all routes. User can Read the books at this website, also can download pdf or borrow a book.
@@ -18,12 +18,10 @@ Categories are displayed on the home page, while clicking on a category it will 
 
 5. Borrow functionalities : 
 In Book detail page we can see the Borrow button and Read button. users are able to borrow their expected books, by clicking the Read button can read some words from the book also can download a pdf version of the book.
+<br/>
 
-Please visit our system for better experience here 
+### Please visit BookishHaven for better experience here :
  - https://bookishhaven-fdd6d.web.app/
-
-## Necessary Links :
-- assignment_category_0008
 
 ## Client Site Code Link : 
 - https://github.com/Porgramming-Hero-web-course/b8a11-client-side-SaddamHossain07
@@ -31,6 +29,4 @@ Please visit our system for better experience here
 ## Server Site Code Link : 
 - https://github.com/Porgramming-Hero-web-course/b8a11-server-side-SaddamHossain07
 
-## Live Link : 
-- https://bookishhaven-fdd6d.web.app/
 
